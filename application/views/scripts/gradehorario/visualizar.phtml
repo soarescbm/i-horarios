@@ -1,0 +1,19 @@
+<?php echo $this->render('titulo.phtml'); ?>
+
+<div id='conteiner_tool' >
+        
+        <div id='tool'>
+            <ul>
+               
+                 <li><a class='retornar' href='<?php echo $this->url;?>/'>Retornar</a></li>
+       
+            </ul>
+        </div>
+</div>
+<div id="sys_conteudo">
+  <?php echo $this->tabela; ?>
+</div>
+<div id="paginador">
+<?php echo $this->paginationControl($this->paginador, 'Sliding','controle_paginador2.phtml');  ?>
+</div>
+       

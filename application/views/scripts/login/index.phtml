@@ -1,0 +1,26 @@
+<div id="login_msn">
+                                    <?php if(isset($this->erro_login)) {?>
+                                        <div class="erro"><?php echo $this->erro_login?></div>
+                                    <?php } ?>
+
+                                </div>
+
+                                <div>
+                                     <div id="login_texto">
+                                        Informe o nome de usuário e senha para ter acesso ao sistema.
+
+                                    </div>
+                                    <div id="form">
+                                            <form action="" method="post" enctype="multipart/form-data" name="form_login" id="form_login">
+                                            <label>Usuário</label>
+                                            <input name="user_nome"  type="text" class="input" autocomplete="off" />
+                                            <label>Senha</label>
+                                            <input name="user_senha"  type="password" class="input" autocomplete="off"  />
+                                            <input  type="submit" value="Autenticar" class="botao"/>
+
+                                            </form>
+
+
+
+                                     </div>
+</div>

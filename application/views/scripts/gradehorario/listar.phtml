@@ -1,0 +1,141 @@
+<script type='text/javascript'>
+	$(document).ready(function (){
+
+        $('.select_itens').change(function(){
+	        var valor = $('.select_itens option:selected').val()
+			$('#form02').attr({action: valor});
+
+                       
+		    $('#form02').submit();
+			
+
+		});
+         $('.procurar').click(function(e){
+                    e.preventDefault();
+		    $('#search').submit();
+
+
+	  });
+          
+         $('#id').keypress(function(event) { 
+             if (event.charCode && (event.charCode < 48 || event.charCode > 57)) { 
+                 event.preventDefault();
+             } 
+         });
+         
+        //$('#form_filtro').hide();
+        //$('#filtro').attr('class', 'sub_titulo1' );
+       // $('.procurar').hide();
+        $('#filtro').toggle( 
+                function(){
+                    $('#form_filtro').fadeOut('show');
+                    $('.procurar').fadeOut('show');
+                    $(this).attr('class', 'sub_titulo_toggle_e' );
+                    $('#icon_toggle').attr('class','icon_toggle_e');
+                   
+                },function(){
+                    $('#form_filtro').fadeIn('show');
+                    $('.procurar').fadeIn('show');
+                    $(this).attr('class', 'sub_titulo_toggle_s' );
+                    $('#icon_toggle').attr('class','icon_toggle_s');
+                });
+
+	 $("#dialog-confirm").dialog({ autoOpen: false });
+       
+         $('.excluir').click(function(e){
+                 e.preventDefault();
+                 var url = $(this).attr('href');
+                 var title = $(this).attr('title');
+                 var mensagem = "<?php echo $this->confirma_exclusao; ?>" + title.toString().toLowerCase();
+                 $('.dialog-mensagem').text(mensagem);
+                 $("#dialog-confirm").dialog({
+                        autoOpen: true,
+			resizable: false,
+			height:150,
+			modal: true,
+			buttons: {
+				'Excluir': function() {
+                                        window.location.href = url;
+                                        $(this).dialog('close');},
+				'Cancelar': function() {
+					$(this).dialog('close');
+                                        return false;
+				}
+			}
+		});
+             });
+	
+	});
+
+
+</script>
+
+
+<div id="dialog-confirm" title="Confirmar Exclusão?">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"> </span>
+                 <span class="dialog-mensagem"></span>
+        </p>
+</div>
+
+
+<?php if (isset($this->mensagem)) { ?>
+
+<div id="confirma_op">
+    <?php echo $this->mensagem; ?>
+
+</div>
+<?php } ?>
+
+<?php echo $this->render('titulo.phtml'); ?>
+
+<div id='conteiner_tool' >
+        <?php if($this->flegAdicionar){ ?>
+        <div id='tool'>
+            <ul>
+                <li><a class='adicionar' href='<?php echo $this->url;?>/inserir'>Adicionar</a></li>
+          <?php if(!$this->flegAvaliar) { ?>
+                <li><a class='avaliar' href='#'>Avaliar</a></li>
+         <?php } ?>
+         <?php if($this->search_custom) { ?>
+                <li><a class='procurar' href='#'>Pesquisar</a></li>
+         <?php } ?>
+            
+        <?php  if($_POST) { ?>
+                 <li><a class='retornar' href='<?php echo $this->url;?>/'>Retornar</a></li>
+        <?php } ?>
+            </ul>
+        </div>
+        <?php } ?>
+
+<?php if(!isset($this->search_custom)) {
+        if($this->search) { ?>
+            <div id='tool_procurar'>
+                <ul>
+                    <form action="<?php echo $this->url;?>/listar"  method="post" id="search">
+                        <li><a class='procurar' href='#'>Procurar</a></li>
+                        <li><input class="search" type="text" name="<?php echo $this->search['field'] ?>" /></li>
+                        <li><span class="search-label"><?php echo $this->search['label']; ?></span></li>
+                     </form>
+                </ul>
+            </div>
+          
+<?php } }?>
+</div>
+<div id="sys_conteudo">
+    
+    <?php if(isset($this->search_custom)) { ?>
+            
+            <div id="filtro" class="sub_titulo_toggle_s"><a href="#" style="display:block"><span id="icon_toggle" class="icon_toggle_s"></span><span class="search_text" >Filtro de Pesquisa</span></a></div>
+           
+        <div id="form_filtro"class="conteudo_form">
+           <?php echo $this->search_custom; ?>
+        </div>
+        <div style="height:10px "></div>
+       
+    <?php } ?>
+    <?php echo $this->tabela; ?>
+</div>
+<div id="paginador">
+<?php echo $this->paginationControl($this->paginador, 'Sliding','controle_paginador2.phtml');  ?>
+</div>
+

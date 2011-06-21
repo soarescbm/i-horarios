@@ -1,0 +1,47 @@
+<?php if ($this->pageCount): ?>
+<form id="form02" method="post">
+<div id="paginationControl">
+<?= $this->firstItemNumber; ?> - <?= $this->lastItemNumber; ?>
+ de <?= $this->totalItemCount; ?>
+<!-- First page link -->
+<?php if (isset($this->previous)): ?>
+<a class="bt_paginacao" href="<?= $this->url(array('pagina' => $this->first)); ?>">Primeira</a> 
+<?php else: ?>
+<span class="disabled">Primeira</span> 
+<?php endif; ?>
+<!-- Previous page link -->
+<?php if (isset($this->previous)): ?>
+<a class="bt_paginacao" href="<?= $this->url(array('pagina' => $this->previous)); ?>">&lt; Voltar</a> <?php else: ?>
+<span class="disabled">&lt; Voltar</span> 
+<?php endif; ?>
+<!-- Next page link -->
+<?php if (isset($this->next)): ?>
+<a class="bt_paginacao" href="<?= $this->url(array('pagina' => $this->next)); ?>">Pr&oacute;ximo &gt;</a> 
+<?php else: ?>
+<span class="disabled">Pr&oacute;ximo &gt;</span> 
+<?php endif; ?>
+<!-- Last page link -->
+<?php if (isset($this->next)): ?>
+<a class="bt_paginacao" href="<?= $this->url(array('pagina' => $this->last)); ?>">&Uacute;ltimo</a>
+<?php else: ?>
+<span class="disabled">&Uacute;ltimo</span>
+<?php endif; ?>
+
+
+<select name="itens" class="select_itens">
+  <option ></option>
+  <option value="<?= $this->url(array('itens' => 10)); ?>">10</option>
+  <option value="<?= $this->url(array('itens' => 20)); ?>">20</option>
+  <option value="<?= $this->url(array('itens' => 30)); ?>">30</option>
+  <option value="<?= $this->url(array('itens' => 50)); ?>">50</option>
+  <option value="<?= $this->url(array('itens' => 100)); ?>">100</option>
+</select>
+
+
+</div>
+</form>
+<?php else: ?>
+
+<div style="clear: both;text-align:center;color:#666;margin: 10px 10px 10px 10px;">Nenhum resultado encontrado.</div>
+<?php endif; ?>
+

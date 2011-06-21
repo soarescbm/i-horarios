@@ -1,0 +1,75 @@
+<script type='text/javascript'>
+	$(document).ready(function (){
+
+             $('.salvar').click(function(){
+
+			$('#form01').submit();
+
+	});
+        valorDisplay = '<?php echo $this->divCheckBox; ?>';
+        $('.checkboxAjax').css('display', valorDisplay);
+       
+        $('#aplicacoes_id').change(function(){
+	        var valor = $('#aplicacoes_id option:selected').val()
+               
+            $.post('<?php echo $this->url;?>' + '/ajax', { aplicacao: valor},
+                 function(data){
+                 $('.checkboxAjax').html(data);
+                 $('.checkboxAjax').css('display', 'block');
+                 },
+                'html');
+            });
+       var dialogOpts = {
+                modal: true,
+                bgiframe: true,
+                autoOpen: false,
+                width: 560,
+                minHeight: 280,
+                draggable: true,
+                resizeable: true,
+            };
+
+            $("#dialog-add").dialog(dialogOpts);
+
+            $('.add').click(function(e){
+                 e.preventDefault();
+                 var url = $(this).attr("href");
+                 var t = $(this).attr("title");
+                 var id = $(this).attr("id");
+                 url = url + "/element/" + id;
+                $("#dialog-add").attr("title",t);
+                $("#dialog-add").load(url).dialog("open");
+
+
+                    return false;
+             });
+
+
+       });
+</script>
+
+<div id="dialog-add" title="<?php echo $this->placeholder('titulo_sistema')?>" > </div>
+
+
+
+<?php echo $this->render('titulo.phtml'); ?>
+
+
+
+<div id="sys_conteudo">
+    <div class="sub_titulo"><?php echo $this->infoForm;?></div>
+    <div class="conteudo_form">
+        
+        <?php echo $this->form; ?>
+    </div>
+</div>
+<div id='conteiner_tool'>
+    <div id='tool'>
+            <ul>
+                <li><a class='salvar' href='#'>Salvar</a></li>
+                <li><a class='cancelar' href='<?php echo $this->url;?>'>Cancelar</a></li>
+            </ul>
+
+    </div>
+    
+</div>

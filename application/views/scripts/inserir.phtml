@@ -1,0 +1,61 @@
+<script type='text/javascript'>
+	$(document).ready(function (){
+
+             $('.salvar').click(function(){
+
+			$('#form01').submit();
+
+            });
+
+            var dialogOpts = {
+                modal: true,
+                bgiframe: true,
+                autoOpen: false,
+                width: 620,
+                minHeight: 280,
+                draggable: true,
+                resizeable: true,
+            };
+
+            $("#dialog-add").dialog(dialogOpts);
+
+            $('.add').click(function(e){
+                 e.preventDefault();
+                 var url = $(this).attr("href");
+                 var t = $(this).attr("title");
+                 var id = $(this).attr("id");
+                 var field = $(this).attr("alt");
+                 url = url + "/element/" + id+"/field/"+field;
+                $("#dialog-add").attr("title",t);
+                $("#dialog-add").load(url).dialog("open");
+                 
+
+                    return false;
+             });
+
+      
+       });
+</script>
+
+<div id="dialog-add" title="<?php echo $this->placeholder('titulo_sistema')?>" > </div>
+<?php echo $this->render('titulo.phtml'); ?>
+
+
+
+<div id="sys_conteudo">
+    <div class="sub_titulo"><?php echo $this->infoForm;?></div>
+    <div class="conteudo_form">
+        
+        <?php echo $this->form; ?>
+    </div>
+</div>
+<div id='conteiner_tool'>
+    <div id='tool'>
+            <ul>
+                <li><a class='salvar' href='#'>Salvar</a></li>
+                <li><a class='cancelar' href='<?php echo $this->url;?>'>Cancelar</a></li>
+            </ul>
+
+    </div>
+    
+</div>

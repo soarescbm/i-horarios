@@ -1,0 +1,7 @@
+SetEnv APPLICATION_ENV development
+
+
+
+RewriteEngine On
+
+RewriteRule ^.*$ public/index.php

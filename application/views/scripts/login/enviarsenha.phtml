@@ -1,0 +1,25 @@
+ <div id="login_msn">
+    
+       
+ </div>  
+ <div class="texto"> Informe seu cpf e endereço de email.  </div>
+ <div>
+      
+      <div id="form">
+        <form action="<?=$this->placeholder('baseUrl')?>/index/gerarsenha" method="post" enctype="multipart/form-data" name="form_login" id="form_login">
+            <label>Cpf:</label>
+            <input name="user_cpf"  type="text" class="input_cpf" autocomplete="off" size="14" maxlength="14"/>
+            <label>Email:</label>
+            <input name="user_email"  type="password" class="input_email" autocomplete="off"   />
+            <label><input  type="submit" value="Enviar" class="botao"/></label>
+        
+        </form>
+       
+          
+      </div>
+      
+     
+     <div class="retorno"> <a href="javascript:history.go(-1)" class="link_login">&laquo; Voltar</a></div>
+ </div>
+
+  

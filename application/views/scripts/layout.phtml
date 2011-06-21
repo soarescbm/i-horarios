@@ -1,0 +1,112 @@
+<?php
+
+/**
+ *
+ *  Layout Defaut
+ *
+ * @filesource
+ * @author Paulo Soares da Silva
+ * @copyright P2S System - Soluções Web
+ * @package eConsig
+ * @subpackage views.scripts
+ * @version 1.0
+ */
+
+
+echo $this->doctype();
+?>
+
+<html>
+
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <?php  echo $this->headTitle()?>
+    <meta name="robots" content="noindex,nofollow"/>
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo $this->baseUrl();?>/templates/<?php  echo $this->placeholder('template')?>/images/favicon.ico" />
+    <link href='<?php  echo $this->placeholder('baseUrlPath')?>/templates/<?php  echo $this->placeholder('template')?>/css/system.css'  rel='stylesheet' type='text/css' />
+    <link href='<?php  echo $this->placeholder('baseUrlPath')?>/templates/system/css/system.css'  rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" type="text/css" href="<?php  echo $this->placeholder('baseUrlPath')?>/templates/<?php  echo $this->placeholder('template')?>/css/superfish.css" media="screen,print">
+     <?php echo $this->jQuery()->addStylesheet($this->placeholder('baseUrlPath').'/templates/'.$this->placeholder('template').'/css/blitzer/jquery-ui.css')
+             ->setLocalPath($this->placeholder('baseUrlPath').'/js/jquery/jquery-1.4.2.min.js')
+             ->setUiLocalPath($this->placeholder('baseUrlPath').'/js/jquery/jquery-ui-1.8.4.custom.min.js')
+             ->enable()
+             ->uiEnable(); ?>
+   <!-- <script type='text/javascript' src="<?php  echo $this->placeholder('baseUrlPath')?>/js/jquery/jquery-1.4.2.min.js"></script>-->
+    <script type="text/javascript" src="<?php  echo $this->placeholder('baseUrlPath')?>/js/menu/js/hoverIntent.js"></script>
+    <script type="text/javascript" src="<?php  echo $this->placeholder('baseUrlPath')?>/js/menu/js/superfish.js"></script>
+    <script type="text/javascript" src="<?php  echo $this->placeholder('baseUrlPath')?>/js/jquery_mascaras/jquery.maskedinput-1.2.js"></script>
+    <script type="text/javascript" src="<?php  echo $this->placeholder('baseUrlPath')?>/js/countdown/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="<?php  echo $this->placeholder('baseUrlPath')?>/js/countdown/jquery.countdown-pt-BR.js"></script>
+    <script type="text/javascript" src="<?php  echo $this->placeholder('baseUrlPath')?>/js/tooltip/tooltip.min.js"></script>
+
+
+
+
+
+        <script type="text/javascript">
+
+			 $(document).ready(function(){
+                            $("ul.sf-menu").superfish({
+                             delay:      800,                            // one second delay on mouseout
+                             animation:   {opacity:'show',height:'show'},  // fade-in and slide-down animation
+                             speed:       'fast',                          // faster animation speed
+                             autoArrows:  true,                           // disable generation of arrow mark-up
+                             dropShadows: true                            // disable drop shadows
+        });
+
+
+                          var chamada = setInterval(function(){ $('#confirma_op').fadeOut('slow');}, 5000);
+
+                          //Tempo de Sessão
+                          $('#info_session').countdown({until: +<?php echo TEMPO_SESSAO; ?>,
+                              layout: 'Sua sessão expira em: {mnn}:{snn}', onExpiry: expirou});
+
+                          function expirou(){
+                             $('#info_session').html('A sessão expirou!');
+                          }
+                          
+                          //Tooltips
+                          
+                          
+                          $(".description img[title]").tooltip({position: "top right"}); 
+
+        		 });
+
+
+
+         			
+	</script>
+
+	</head>
+
+	<body>
+	       <div  id="conteiner">
+		   	     <div id="conteiner_topo">
+                      <div id="logo_system">
+                             <div id="logoff"> <a href="<?php  echo $this->placeholder('baseUrl')?>/login/logoff"  ><span></span></a></div>
+                             <div id="logado">
+                                          <?php echo $this->userLogado()?>
+                             </div>
+                             <div id="info_data"> <?php echo $this->infoData()?> </div>
+                             <div id="info_area"><?php echo $this->areaUsuario()?></div>
+
+                      </div>
+                 </div>
+
+                 <div id="mein_menu">
+                      <div id="info_session">  </div>
+                       <?php echo $this->listaMenu()?>
+                 </div>
+
+                 <div class="erro"> </div>
+                 <div id="header_titilo"> </div>
+	             <div id="content"><?php  echo $this->layout()->content?></div>
+
+
+		   </div>
+           <div id="copyright"><?php  echo $this->placeholder('copyright')?> </div>
+
+
+	</body>
+
+</html>

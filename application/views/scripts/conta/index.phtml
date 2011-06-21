@@ -1,0 +1,23 @@
+<?php echo $this->render('titulo.phtml'); ?>
+
+<div id="sys_conteudo">
+    <div class="sub_titulo">Informações da Conta</div>
+    <div class="conteudo_form">
+
+        <table class="view" border="0px" cellspacing="0" cellpadding="0">
+            <tr class="row0">
+                <td class="rotulo">Nome Completo:</td>
+                <td ><?php echo $this->conta['nome']?></td>
+            </tr>
+            <tr>
+                <td class="rotulo">Nome de Usuário:</td>
+                <td><?php echo $this->conta['nome_usuario']?></td>
+            </tr>
+            <tr class="row0">
+                <td class="rotulo">Cpf:</td>
+                <td><?php echo $this->conta['cpf']?></td>
+            </tr>
+           
+        </table>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+<?php
+
+echo $this->doctype();
+?>
+
+<html>
+
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<?php echo $this->headTitle()?>
+        <meta name="robots" content="noindex,nofollow"/>
+        <link rel="shortcut icon" type="image/x-icon" href="<?php echo $this->placeholder('baseUrlPath')?>/templates/<?php echo $this->placeholder('template')?>/images/favicon.ico" />
+	<link href='<?php echo $this->placeholder('baseUrlPath')?>/templates/<?php echo $this->placeholder('template')?>/css/login.css'  rel='stylesheet' type='text/css' />
+
+
+	</head>
+
+	<body>
+	       <div  id="conteiner" align="center">
+		   		<div id="spaco_top"></div>
+                <div id="conteiner_login">
+                    <div id="login">
+                         <div id="header_login">
+                             <div id="logo"></div>
+                         </div>
+                         <div id="conteiner_content">
+
+
+                                <div id="content"><?php echo $this->layout()->content?></div>
+                                
+
+
+
+
+                         </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+				<div class="rodape">
+			      <?php $this->placeholder('copyright')?>
+				</div>
+
+		   </div>
+
+
+	</body>
+
+</html>
+
+
